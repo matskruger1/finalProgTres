@@ -12,7 +12,7 @@ class Home extends Component {
     render() {
         return (
             <View style={styles.background}>
-               <Text> Home </Text>
+               <Text style={styles.text}> Home </Text>
             </View>
         )
     }

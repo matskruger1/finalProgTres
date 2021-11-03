@@ -5,6 +5,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 const Drawer = createBottomTabNavigator();
 
 import Home from '../screens/home'
+import Register from '../screens/register'
+import Login from '../screens/login'
 
 class Menu extends Component {
     constructor(props) {
@@ -17,7 +19,10 @@ class Menu extends Component {
     render() {
         return (
             <NavigationContainer>
-                <Drawer.Screen name="Home" component={()=> <Home /> } />
+                <Drawer.Navigator>
+                    <Drawer.Screen name="Login" component={()=> <Login /> } />
+                    <Drawer.Screen name="Register" component={() => <Register />} />
+                </Drawer.Navigator>
             </NavigationContainer>
         )
     }
