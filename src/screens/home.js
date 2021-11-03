@@ -1,17 +1,32 @@
-import React, {Component} from 'react';
-import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, FlatList, TextInput} from 'react-native';
-import { db, auth } from '../firebase/config';
-import Post from '../components/Post';
+import React, { Component } from 'react';
+import { Text, View, StyleSheet } from 'react-native';
 
-
-class Home extends Component{
-  constructor(props){
-    super(props);
-    this.state ={
-      posteos: [],
+class Home extends Component {
+    constructor() {
+        super()
+        this.state = {
+        
+        }
     }
-  }
 
+    render() {
+        return (
+            <View style={styles.background}>
+               <Text> Home </Text>
+            </View>
+        )
+    }
 }
+
+const styles = StyleSheet.create({
+    text: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
+    background: {
+        padding: 20,
+    },
+})
 
 export default Home;
