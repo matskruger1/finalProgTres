@@ -38,7 +38,9 @@ class Menu extends Component {
             .catch(e => console.log(e))
     }
 
+   
     register(email, pass){
+        console.log ("registrando")
         auth.createUserWithEmailAndPassword(email, pass)
             .then( ()=>{
                 console.log('Registrado');
