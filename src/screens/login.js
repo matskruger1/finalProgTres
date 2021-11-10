@@ -7,8 +7,11 @@ class Login extends Component {
         this.state = {
             email: '',
             password: '',
+            error:" "
         }
     }
+
+
 
     render() {
         return (
@@ -26,7 +29,7 @@ class Login extends Component {
                         onChangeText={text => this.setState({ password: text })}
                     />
 
-                    <TouchableOpacity style={styles.boton} >
+                    <TouchableOpacity style={styles.boton}  onPress={()=>this.props.login(this.state.email, this.state.password)} >
                         <Text>Log in</Text>
                     </TouchableOpacity>
                 </View>
