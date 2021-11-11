@@ -13,12 +13,16 @@ class Profile extends Component{
     console.log(auth.currentUser);
     return(
       <View style={styles.container}>
-        <Text>Profile</Text>
-        <Text> Nombre: </Text>
-        <Text>email:{auth.currentUser.email}</Text>
-        <Text>Last sign in: {auth.currentUser.metadata.lastSignInTime}</Text>
+        <Text style={styles.title}>Profile</Text>
+
+        <View style={styles.infoContainer}>
+          <Text style={styles.infoText}>Nombre: </Text>
+          <Text style={styles.infoText}>Email: {auth.currentUser.email}</Text>
+          <Text style={styles.infoText}>Last sign in: {auth.currentUser.metadata.lastSignInTime}</Text>
+        </View>
+        
         <TouchableOpacity style={styles.boton}  onPress={()=>this.props.logout()}>
-          <Text>Logout</Text>
+          <Text style={styles.texto}>Logout</Text>
        
         </TouchableOpacity>
         
@@ -32,27 +36,42 @@ const styles = StyleSheet.create({
   container:{
     paddingHorizontal:10,
   },
-  formContainer:{
-    backgroundColor: '#ccc',
-    marginHorizontal: 10,
-    padding:10,
+  infoContainer: {
+    width: '90%',
+    margin: 'auto',
+    marginVertical: 30,
+    backgroundColor: 'white',
+    padding: 15,
+    borderRadius: 10,
+    height: '95%',
   },
-  field:{
-    borderColor: '#444',
-    borderWidth:1,
+  title: {
+    color: 'black',
+    fontSize: 30,
+    fontFamily: `'Raleway', sans-serif`,
+    textAlign: 'center',
+    marginTop: 20,
+  },
+  boton: {
+    backgroundColor: '#d11919',
+    color: 'white',
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    width: '40%',
+    textAlign: 'center',
+    borderRadius: 4,
+    borderWidth: 1,
     borderStyle: 'solid',
-    height: 20,
-    paddingHorizontal: 20,
-    paddingVertical:10
+    borderColor: '#d11919',
+    marginTop: 10,
+    alignSelf: 'center',
   },
-  image:{
-    height: 250,
+  texto: {
+    color: 'white',
   },
-  touchable:{
-    backgroundColor: '#ccc',
-    borderRadius:4,
-    marginVertical:10,
-  }
+  infoText: {
+    marginVertical: 5,
+  },
 })
 
 export default Profile;

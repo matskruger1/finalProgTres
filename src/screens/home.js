@@ -12,17 +12,19 @@ class Home extends Component {
     render() {
         return (
             <View style={styles.background}>
-               <Text style={styles.text}> Home </Text>
+               <Text style={styles.title}> Home </Text>
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    text: {
-        fontSize: 20,
-        fontWeight: 'bold',
+    title: {
+        color: 'black',
+        fontSize: 30,
+        fontFamily: `'Raleway', sans-serif`,
         textAlign: 'center',
+        marginTop: 20,
     },
     background: {
         padding: 20,

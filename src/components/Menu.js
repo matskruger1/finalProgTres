@@ -16,8 +16,8 @@ class Menu extends Component {
         super(props);
         this.state = {
             loggedIn:false,
-            user:'',
-            email:""
+            user: '',
+            email: '',
         }
     }
 
@@ -65,6 +65,7 @@ class Menu extends Component {
             .then( (res)=>{
                 this.setState({
                     user:'',
+                    loggedIn: false,
                 })
             })
             .catch()
@@ -77,8 +78,8 @@ class Menu extends Component {
                 
                 { this.state.loggedIn ? 
                 <Drawer.Navigator>
-                  <Drawer.Screen name= "home " options={ {headerShown:false }} component={()=> <Home/>}/>
-                  <Drawer.Screen name= "profile " options={ {headerShown:false }} component={()=> <Profile email={this.state.email} logout={()=>this.logout()}/>}/>
+                  <Drawer.Screen name= "Home" options={ {headerShown:false }} component={()=> <Home/>}/>
+                  <Drawer.Screen name= "Profile" options={ {headerShown:false }} component={()=> <Profile email={this.state.email} logout={()=>this.logout()}/>}/>
                 </Drawer.Navigator>
                   :
                   <Drawer.Navigator>

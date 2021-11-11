@@ -16,6 +16,7 @@ class Login extends Component {
     render() {
         return (
             <View style={styles.background}>
+                <Text style={styles.title}>Instagram</Text>
                 <View style={styles.formContainer}>
                     <TextInput style={styles.input}
                         placeholder='Email'
@@ -30,7 +31,7 @@ class Login extends Component {
                     />
 
                     <TouchableOpacity style={styles.boton}  onPress={()=>this.props.login(this.state.email, this.state.password)} >
-                        <Text>Log in</Text>
+                        <Text style={styles.texto}>Log in</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -41,9 +42,10 @@ class Login extends Component {
 
 const styles = StyleSheet.create({
     formContainer: {
-        paddingHorizontal: 10,
         alignItems: 'center',
-        paddingVertical: 20
+        paddingVertical: 20,
+        width: '80%',
+        margin: 'auto',
     },
     input: {
         height: 20,
@@ -56,17 +58,27 @@ const styles = StyleSheet.create({
         margin: 5,
     },
     boton: {
-        backgroundColor: '#28a745',
-        color: '#fff',
+        backgroundColor: '#3e92e0',
+        color: 'white',
         paddingHorizontal: 10,
         paddingVertical: 6,
-        width: '30%',
+        width: '40%',
         textAlign: 'center',
         borderRadius: 4,
         borderWidth: 1,
         borderStyle: 'solid',
-        borderColor: '#28a745',
+        borderColor: '#3e92e0',
         marginTop: 10,
+    },
+    texto: {
+        color: 'white',
+    },
+    title: {
+        color: 'black',
+        fontSize: 30,
+        fontFamily: `'Raleway', sans-serif`,
+        textAlign: 'center',
+        marginTop: 20,
     },
 })
 
