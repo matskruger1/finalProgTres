@@ -18,6 +18,7 @@ class Menu extends Component {
             loggedIn:false,
             user: '',
             email: '',
+            error: '',
         }
     }
 
@@ -49,14 +50,15 @@ class Menu extends Component {
 
    
     register(email, pass){
-        console.log ("registrando")
         auth.createUserWithEmailAndPassword(email, pass)
             .then( (response)=>{
                 this.setState({email: response.user.email})
                 console.log('Registrado');
             })
             .catch( error => {
-                console.log(error);
+                this.setState({
+                    error: error.message,
+                })
             })
     }
 
@@ -86,7 +88,7 @@ class Menu extends Component {
                   <Drawer.Screen name="Login" options={ {headerShown:false }} component={()=> <Login  login={(email, pass) => {
                         this.login(email, pass)}}/> }  />
                           <Drawer.Screen name="Register" options={ {headerShown:false }}
-                    component={() => <Register register={(email, pass)=>this.register(email, pass)} />} />
+                    component={() => <Register error={this.state.error} register={(email, pass)=>this.register(email, pass)} />} />
                   </Drawer.Navigator>
                   }
 

@@ -6,7 +6,7 @@ class Register extends Component {
         super(props)
         this.state = {
            email: '',
-           user: '',
+           displayName: '',
            password: '',
         }
     }
@@ -22,15 +22,21 @@ class Register extends Component {
                         onChangeText={text => this.setState({ email: text })}
                     />
                     <TextInput style={styles.input}
-                        placeholder='Username'
+                        placeholder='Full Name'
                         keyboardType='default'
-                        onChangeText={text => this.setState({ user: text })}
+                        onChangeText={text => this.setState({ displayName: text })}
                     />
                     <TextInput style={styles.input}
                         placeholder='Password'
                         secureTextEntry={true}
                         onChangeText={text => this.setState({ password: text })}
                     />
+                    {
+                        this.props.error ?
+                        <Text style={styles.alert}>{this.props.error}</Text> 
+                        :
+                        <React.Fragment></React.Fragment>
+                    }
 
                     <TouchableOpacity style={styles.boton}  onPress={()=>this.props.register(this.state.email, this.state.password)} >
                         <Text style={styles.texto}>Register</Text>
@@ -81,6 +87,12 @@ const styles = StyleSheet.create({
         fontFamily: `'Raleway', sans-serif`,
         textAlign: 'center',
         marginTop: 20,
+    },
+    alert: {
+        color: 'red',
+        fontSize: 12,
+        textAlign: 'center',
+        marginVertical: 10,
     },
 })
 

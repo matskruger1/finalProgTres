@@ -9,6 +9,7 @@ class Profile extends Component{
       
     }
   }
+
   render(){
     console.log(auth.currentUser);
     return(
