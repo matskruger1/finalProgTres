@@ -29,6 +29,12 @@ class Login extends Component {
                         secureTextEntry={true}
                         onChangeText={text => this.setState({ password: text })}
                     />
+                    {
+                        this.props.error ?
+                            <Text style={styles.alert}>{this.props.error}</Text>
+                            :
+                            <React.Fragment></React.Fragment>
+                    }
 
                     <TouchableOpacity style={styles.boton}  onPress={()=>this.props.login(this.state.email, this.state.password)} >
                         <Text style={styles.texto}>Log in</Text>
@@ -79,6 +85,12 @@ const styles = StyleSheet.create({
         fontFamily: `'Raleway', sans-serif`,
         textAlign: 'center',
         marginTop: 20,
+    },
+    alert: {
+        color: 'red',
+        fontSize: 12,
+        textAlign: 'center',
+        marginVertical: 10,
     },
 })
 

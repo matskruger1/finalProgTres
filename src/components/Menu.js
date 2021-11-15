@@ -8,6 +8,7 @@ import Home from '../screens/home'
 import Register from '../screens/register'
 import Login from '../screens/login'
 import Profile from '../screens/profile';
+import PostForm from '../screens/postForm';
 
 
 import { auth } from '../firebase/config';
@@ -45,7 +46,11 @@ class Menu extends Component {
                     email: response.user.email
                 })
             })
-            .catch(e => console.log(e))
+            .catch(error => {
+                this.setState({
+                    error: error.message,
+                })
+            })
     }
 
    
@@ -82,10 +87,11 @@ class Menu extends Component {
                 <Drawer.Navigator>
                   <Drawer.Screen name= "Home" options={ {headerShown:false }} component={()=> <Home/>}/>
                   <Drawer.Screen name= "Profile" options={ {headerShown:false }} component={()=> <Profile email={this.state.email} logout={()=>this.logout()}/>}/>
+                        <Drawer.Screen name="New Post" options={{ headerShown: false }} component={(drawerProps) => <PostForm drawerProps={drawerProps} />} />
                 </Drawer.Navigator>
                   :
                   <Drawer.Navigator>
-                  <Drawer.Screen name="Login" options={ {headerShown:false }} component={()=> <Login  login={(email, pass) => {
+                        <Drawer.Screen name="Login" options={{ headerShown: false }} component={() => <Login error={this.state.error} login={(email, pass) => {
                         this.login(email, pass)}}/> }  />
                           <Drawer.Screen name="Register" options={ {headerShown:false }}
                     component={() => <Register error={this.state.error} register={(email, pass)=>this.register(email, pass)} />} />

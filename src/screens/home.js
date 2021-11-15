@@ -1,18 +1,47 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, FlatList } from 'react-native';
+import { db } from '../firebase/config';
+
+import Post from '../components/Post'
 
 class Home extends Component {
     constructor() {
         super()
         this.state = {
-        
+            posts: {},
         }
+    }
+
+    componentDidMount(){
+        db.collection('Posts').orderBy('createdAt', 'desc').onSnapshot(
+            docs => {
+                let posteos = [];
+                docs.forEach(doc => {
+                    posteos.push({
+                        id: doc.id,
+                        data: doc.data()
+                    })
+                })
+
+                this.setState({
+                    posts: posteos,
+                })
+            }
+
+        )
     }
 
     render() {
         return (
             <View style={styles.background}>
                <Text style={styles.title}> Home </Text>
+               <View>
+                   <FlatList 
+                        data={this.state.posts}
+                        keyExtractor={post => post.id}
+                        renderItem={({ item }) => <Post post={item} />}
+                   />
+               </View>
             </View>
         )
     }
