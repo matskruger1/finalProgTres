@@ -9,6 +9,7 @@ import Register from '../screens/register'
 import Login from '../screens/login'
 import Profile from '../screens/profile';
 import PostForm from '../screens/postForm';
+import Search from '../screens/search';
 
 
 import { auth } from '../firebase/config';
@@ -54,11 +55,17 @@ class Menu extends Component {
     }
 
    
-    register(email, pass){
+    register(email, pass, name){
         auth.createUserWithEmailAndPassword(email, pass)
             .then( (response)=>{
-                this.setState({email: response.user.email})
-                console.log('Registrado');
+                console.log();
+                response.user.updateProfile({
+                    displayName: name,
+                })
+                .then(() => {
+                    console.log('nombre registrado')
+                })
+                .catch(e => console.log(e))
             })
             .catch( error => {
                 this.setState({
@@ -87,14 +94,15 @@ class Menu extends Component {
                 <Drawer.Navigator>
                   <Drawer.Screen name= "Home" options={ {headerShown:false }} component={()=> <Home/>}/>
                   <Drawer.Screen name= "Profile" options={ {headerShown:false }} component={()=> <Profile email={this.state.email} logout={()=>this.logout()}/>}/>
-                        <Drawer.Screen name="New Post" options={{ headerShown: false }} component={(drawerProps) => <PostForm drawerProps={drawerProps} />} />
+                    <Drawer.Screen name="New Post" options={{ headerShown: false }} component={(drawerProps) => <PostForm drawerProps={drawerProps} />} />
+                    <Drawer.Screen name="Search" options={{ headerShown: false }} component={() => <Search />} />
                 </Drawer.Navigator>
                   :
                   <Drawer.Navigator>
                         <Drawer.Screen name="Login" options={{ headerShown: false }} component={() => <Login error={this.state.error} login={(email, pass) => {
                         this.login(email, pass)}}/> }  />
                           <Drawer.Screen name="Register" options={ {headerShown:false }}
-                    component={() => <Register error={this.state.error} register={(email, pass)=>this.register(email, pass)} />} />
+                    component={() => <Register error={this.state.error} register={(email, pass, name)=>this.register(email, pass, name)} />} />
                   </Drawer.Navigator>
                   }
 

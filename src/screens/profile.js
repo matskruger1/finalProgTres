@@ -17,7 +17,7 @@ class Profile extends Component{
         <Text style={styles.title}>Profile</Text>
 
         <View style={styles.infoContainer}>
-          <Text style={styles.infoText}>Nombre: </Text>
+          <Text style={styles.infoText}>Nombre: {auth.currentUser.displayName}</Text>
           <Text style={styles.infoText}>Email: {auth.currentUser.email}</Text>
           <Text style={styles.infoText}>Last sign in: {auth.currentUser.metadata.lastSignInTime}</Text>
         </View>
