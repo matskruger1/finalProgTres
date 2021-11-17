@@ -35,13 +35,13 @@ class Home extends Component {
         return (
             <View style={styles.background}>
                <Text style={styles.title}> Home </Text>
-               <View>
+                 <View> 
                    <FlatList 
                         data={this.state.posts}
                         keyExtractor={post => post.id}
                         renderItem={({ item }) => <Post post={item} />}
                    />
-               </View>
+                </View> 
             </View>
         )
     }

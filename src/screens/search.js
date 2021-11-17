@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, TextInput, TouchableOpacity } from 'react-native'
+import { Text, StyleSheet, View, TextInput, TouchableOpacity, FlatList } from 'react-native'
 
 import { db } from '../firebase/config';
+import Post from '../components/Post';
 
 class Search extends Component {
     constructor(){
@@ -13,39 +14,51 @@ class Search extends Component {
     }
 
     onSubmit(){
-        db.collection('Posts').where('owner', '==', this.state.searchText)
-        .then((docs) => {
-            let postsUser = [];
-
-            docs.forEach(doc => {
-                posteos.push({
-                    id: doc.id,
-                    data: doc.data()
+        db.collection('Posts').where('owner', '==', this.state.searchText).onSnapshot(
+            docs => {
+                let posteo = [];
+                docs.forEach(doc => {
+                    posteo.push({
+                        id: doc.id,
+                        data: doc.data()
+                    })
                 })
-            })
-            
-            this.setState({
-                postsUser: postsUser,
-            })
-        })
-        .catch(e => console.log(e))
+
+                this.setState({
+                    postsUser: posteo,
+                })
+        }) 
     }
 
     render() {
+        console.log(this.state.postsUser)
         return (
             <View>
                 <Text style={styles.title}>Search Users</Text>
                 <View style={styles.formContainer}>
+                
                     <TextInput
                         style={styles.input}
                         placeholder='search...'
                         keyboardType='default'
                         onChangeText={text => this.setState({ searchText: text })}
                     />
-                    <TouchableOpacity style={styles.boton} onPress={() => this.props.register(this.state.email, this.state.password, this.state.displayName)} >
+                    <TouchableOpacity style={styles.boton} onPress={()=>this.onSubmit()} >
                         <Text style={styles.texto}>search</Text>
                     </TouchableOpacity>
                 </View>  
+                <View>
+                    { this.state.postsUser.length !== 0
+                    ?
+                    <FlatList 
+                      data={this.state.postsUser}
+                      keyExtractor={post => post.id}
+                      renderItem={({ item }) => <Post post={item} />}/>
+                    :
+                    
+                    <Text>No hay nada para mostrarte pa </Text>
+                    }
+                </View>
             </View>
         )
     }

@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     modalContainer: {
-        width: '90%',
+        width:"30%",
         borderRadius: 4,
         padding: 10,
         alignSelf: 'center',
