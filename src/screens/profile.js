@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     padding: 15,
     borderRadius: 10,
-    height: '95%',
   },
   title: {
     color: 'black',
