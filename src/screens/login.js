@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, Image, StyleSheet, TextInput } from 'react-native';
+import { withSafeAreaInsets } from 'react-native-safe-area-context';
 
 class Login extends Component {
     constructor(props) {
@@ -36,9 +37,16 @@ class Login extends Component {
                             <React.Fragment></React.Fragment>
                     }
 
-                    <TouchableOpacity style={styles.boton}  onPress={()=>this.props.login(this.state.email, this.state.password)} >
-                        <Text style={styles.texto}>Log in</Text>
-                    </TouchableOpacity>
+                    {
+                        this.state.email.includes('@') && this.state.password.length > 5 ?
+                            <TouchableOpacity style={styles.boton} onPress={() => this.props.login(this.state.email, this.state.password)} >
+                                <Text style={styles.texto}>Log in</Text>
+                            </TouchableOpacity>
+                            :
+                            <TouchableOpacity style={styles.botonDesactivado} >
+                                <Text style={styles.texto}>Log in</Text>
+                            </TouchableOpacity>
+                    }
                 </View>
 
             </View>
@@ -62,6 +70,7 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         width: '100%',
         margin: 5,
+        backgroundColor: 'white',
     },
     boton: {
         backgroundColor: '#3e92e0',
@@ -74,6 +83,19 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderStyle: 'solid',
         borderColor: '#3e92e0',
+        marginTop: 10,
+    },
+    botonDesactivado: {
+        backgroundColor: '#91c1ee',
+        color: 'white',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        width: '40%',
+        textAlign: 'center',
+        borderRadius: 4,
+        borderWidth: 1,
+        borderStyle: 'solid',
+        borderColor: '#91c1ee',
         marginTop: 10,
     },
     texto: {
