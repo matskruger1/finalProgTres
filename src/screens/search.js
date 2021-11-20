@@ -33,7 +33,7 @@ class Search extends Component {
     render() {
         console.log(this.state.postsUser)
         return (
-            <View>
+            <React.Fragment>
                 <Text style={styles.title}>Search Users</Text>
                 <View style={styles.formContainer}>
                 
@@ -47,7 +47,7 @@ class Search extends Component {
                         <Text style={styles.texto}>search</Text>
                     </TouchableOpacity>
                 </View>  
-                <View>
+               <React.Fragment>
                     { this.state.postsUser.length !== 0
                     ?
                     <FlatList 
@@ -58,8 +58,8 @@ class Search extends Component {
                     
                     <Text>No hay nada para mostrarte pa </Text>
                     }
-                </View>
-            </View>
+                </React.Fragment>
+            </React.Fragment>
         )
     }
 }

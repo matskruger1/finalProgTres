@@ -33,16 +33,21 @@ class Home extends Component {
 
     render() {
         return (
-            <View style={styles.background}>
+           
+               
+               
+                 <React.Fragment>
+                     
                <Text style={styles.title}> Home </Text>
-                 <View> 
+              
                    <FlatList 
                         data={this.state.posts}
                         keyExtractor={post => post.id}
                         renderItem={({ item }) => <Post post={item} />}
                    />
-                </View> 
-            </View>
+                   </React.Fragment>
+                
+            
         )
     }
 }
