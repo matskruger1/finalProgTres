@@ -56,7 +56,7 @@ class PostForm extends Component {
                     style={styles.input}
                     onChangeText={(text) => this.setState({ textoPost: text })}
                     keyboardType='default'
-                    ultiline
+                    multiline
                     value={this.state.textoPost}
                 />
                 <TouchableOpacity style={styles.boton} onPress={() => this.onSubmit()}>
