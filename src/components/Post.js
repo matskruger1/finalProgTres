@@ -90,7 +90,9 @@ class Post extends Component {
     }
 
     render() {
+      
         return (
+
             <View style={styles.postContainer}>
                 <Text>{this.props.post.data.owner}: {this.props.post.data.textoPost}</Text>
                 <View style={styles.botonContainer}>
@@ -120,12 +122,13 @@ class Post extends Component {
 
                             {
                                 this.props.post.data.comments ?
+
                                     <FlatList
                                         data={this.props.post.data.comments}
                                         keyExtractor={post => post.createdAt.toString()}
                                         renderItem={({ item }) => <Text>{item.author}: {item.commentText}</Text>}
                                     /> :
-                                    <Text>No comments</Text>
+                                    <Text>No comments yet</Text>
                             }
 
 
