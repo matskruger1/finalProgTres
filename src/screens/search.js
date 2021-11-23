@@ -9,7 +9,7 @@ class Search extends Component {
         super()
         this.state = {
             searchText: '',
-            postsUser: {},
+            postsUser: [],
         }
     }
 
