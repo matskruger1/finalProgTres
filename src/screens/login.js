@@ -43,7 +43,7 @@ class Login extends Component {
                                 <Text style={styles.texto}>Log in</Text>
                             </TouchableOpacity>
                             :
-                            <TouchableOpacity style={styles.botonDesactivado} onPress={() => this.props.login(this.state.email, this.state.password)}>
+                            <TouchableOpacity style={styles.botonDesactivado}>
                                 <Text style={styles.texto}>Log in</Text>
                             </TouchableOpacity>
                     }

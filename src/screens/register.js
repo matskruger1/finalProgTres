@@ -38,9 +38,16 @@ class Register extends Component {
                         <React.Fragment></React.Fragment>
                     }
 
-                    <TouchableOpacity style={styles.boton}  onPress={()=>this.props.register(this.state.email, this.state.password, this.state.displayName)} >
-                        <Text style={styles.texto}>Register</Text>
-                    </TouchableOpacity>
+                    {
+                        this.state.email.includes('@') && this.state.password.length > 5 ?
+                            <TouchableOpacity style={styles.boton}  onPress={()=>this.props.register(this.state.email, this.state.password, this.state.displayName)} >
+                               <Text style={styles.texto}>Register</Text>
+                            </TouchableOpacity>
+                            :
+                            <TouchableOpacity style={styles.botonDesactivado}>
+                                <Text style={styles.texto}>Log in</Text>
+                            </TouchableOpacity>
+                    }
                 </View>
 
             </View>

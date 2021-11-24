@@ -92,11 +92,14 @@ class Post extends Component {
     }
 
     borrarPosteo(){
-
+        db.collection('Posts').doc(this.props.post.id).delete()
+            .then()
+            .catch(e => console.log(e))
     }
+    
 
     render() {
-      
+       
         return (
 
             <View style={styles.postContainer}>
@@ -109,12 +112,15 @@ class Post extends Component {
                 <TouchableOpacity>
                 </TouchableOpacity>
                 }
+
                 <Text>{this.props.post.data.owner}: {this.props.post.data.textoPost}</Text>
+                <Text style={styles.infoText}>Created at {this.props.post.data.createdAt}</Text>
                   <Image 
                   source = {this.props.post.data.photo}
                   resizeMode= 'contain'
                   style={styles.image}
                 />
+
                 <View style={styles.botonContainer}>
                     {
                         this.state.liked ?
@@ -141,16 +147,20 @@ class Post extends Component {
                                 <Text style={styles.closeButton}>X</Text>
                             </TouchableOpacity>
 
-                            {
-                                this.props.post.data.comments ?
 
-                                    <FlatList
-                                        data={this.props.post.data.comments}
-                                        keyExtractor={post => post.createdAt.toString()}
-                                        renderItem={({ item }) => <Text>{item.author}: {item.commentText}</Text>}
-                                    /> :
-                                    <Text>No comments yet</Text>
-                            }
+                            {
+                                 this.props.post.data.comments.length > 0  ?
+                                 <FlatList  
+                                data={this.props.post.data.comments}
+                                keyExtractor={post => post.createdAt.toString()}
+                                renderItem= {({item})=> <Text>{item.author} : {item.commentText}</Text>}
+
+                                />  :
+
+                                <Text style={styles.noComments}>Aun no hay comentarios</Text>
+
+                             }
+                            
 
                                 <TextInput
                                     style={styles.input}
@@ -196,6 +206,19 @@ const styles = StyleSheet.create({
         borderColor: '#3e92e0',
         marginTop: 10,
         alignSelf:'center'
+    },
+    botonDesactivado: {
+        backgroundColor: '#91c1ee',
+        color: 'white',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        width: '40%',
+        textAlign: 'center',
+        borderRadius: 4,
+        borderWidth: 1,
+        borderStyle: 'solid',
+        borderColor: '#91c1ee',
+        marginTop: 10,
     },
     botonContainer: {
         display: 'flex',
@@ -246,7 +269,10 @@ const styles = StyleSheet.create({
     },
     image: {
             height: 200
-        }
+        },
+    noComments: {
+          alignSelf:'center',
+     }
     
 })
 

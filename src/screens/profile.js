@@ -39,6 +39,7 @@ class Profile extends Component{
           <Text style={styles.infoText}>Nombre: {auth.currentUser.displayName}</Text>
           <Text style={styles.infoText}>Email: {auth.currentUser.email}</Text>
           <Text style={styles.infoText}>Last sign in: {auth.currentUser.metadata.lastSignInTime}</Text>
+          <Text style={styles.infoText}>Amount of posts done: {this.state.postsUser.length}</Text>
         </View>
 
         { this.state.postsUser.length !== 0
