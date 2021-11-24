@@ -112,9 +112,11 @@ class Post extends Component {
                 <TouchableOpacity>
                 </TouchableOpacity>
                 }
+                <View style={styles.postData}>
+                    <Text style={styles.userName}>{this.props.post.data.owner}</Text>
+                    <Text style={styles.infoText}>Created at {this.props.post.data.createdAt}</Text>
+                </View>
 
-                <Text>{this.props.post.data.owner}: {this.props.post.data.textoPost}</Text>
-                <Text style={styles.infoText}>Created at {this.props.post.data.createdAt}</Text>
                   <Image 
                   source = {this.props.post.data.photo}
                   resizeMode= 'contain'
@@ -132,9 +134,13 @@ class Post extends Component {
                                 <FontAwesome name="heart-o" size={24} color="black" />
                             </TouchableOpacity>
                     }
+                    <TouchableOpacity style={styles.boton} onPress={() => this.showModal()}>
+                            <FontAwesome name="comment-o" size={24} color="black" />
+                        </TouchableOpacity>
                     
                 </View>
 
+                <Text>{this.props.post.data.textoPost}</Text>
 
                 {
                     this.state.showModal ?
@@ -175,15 +181,13 @@ class Post extends Component {
                                     }}
                                 />
                                 <Text>{this.state.errorComentario}</Text>
-                                <TouchableOpacity style={styles.boton} onPress={() => this.publicarComentario()}>
+                                <TouchableOpacity style={styles.botonComment} onPress={() => this.publicarComentario()}>
                                     <Text>Comentar</Text>
                                 </TouchableOpacity>
 
                         </Modal>
                         :
-                        <TouchableOpacity onPress={() => this.showModal()}>
-                            <Text>Comment <FontAwesome name="comment-o" size={20} color="black" /> </Text>
-                        </TouchableOpacity>
+                        null
                 }
                 <Text>Likes: {this.state.likes} </Text>
 
@@ -194,6 +198,12 @@ class Post extends Component {
 
 const styles = StyleSheet.create({
     boton: {
+        paddingVertical: 6,
+        width: '15%',
+        textAlign: 'center',
+        alignSelf:'center'
+    },
+    botonComment: {
         backgroundColor: '#3e92e0',
         color: 'white',
         paddingHorizontal: 10,
@@ -205,35 +215,24 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderColor: '#3e92e0',
         marginTop: 10,
-        alignSelf:'center'
-    },
-    botonDesactivado: {
-        backgroundColor: '#91c1ee',
-        color: 'white',
-        paddingHorizontal: 10,
-        paddingVertical: 6,
-        width: '40%',
-        textAlign: 'center',
-        borderRadius: 4,
-        borderWidth: 1,
-        borderStyle: 'solid',
-        borderColor: '#91c1ee',
-        marginTop: 10,
+        alignSelf: 'center'
     },
     botonContainer: {
         display: 'flex',
         flexDirection: 'row',
-        padding: 10,
-        justifyContent: 'space-around'
+        paddingVertical: 10,
+        justifyContent: 'flex-start'
     },
     postContainer: {
         backgroundColor: 'white',
         borderWidth: 1,
         borderColor: '#ccc',
         borderRadius: 6,
-        width: '100%',
         marginBottom: 20,
         padding: 10,
+        maxWidth: 340,
+        margin: 'auto',
+        width: '100%'
     },
     modalContainer: {
         width:"90%",
@@ -272,6 +271,18 @@ const styles = StyleSheet.create({
         },
     noComments: {
           alignSelf:'center',
+     },
+     postData: {
+        borderBottomWidth: 2,
+        borderColor: 'black',
+        padding: 5,
+        marginBottom:10,
+        marginRight: -10,
+        marginLeft: -10,
+        marginTop: -10,
+     },
+     userName: {
+         fontWeight: 'bold'
      }
     
 })

@@ -3,6 +3,8 @@ import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
 import {Camera} from 'expo-camera';
 import {db, storage} from '../firebase/config';
 
+import { FontAwesome } from '@expo/vector-icons';
+
 
 class MyCamera extends Component {
     constructor(props){
@@ -92,11 +94,11 @@ class MyCamera extends Component {
                             source={{uri:this.state.photo}}
                          />
                          <View style={styles.actionArea}>                          
-                         <TouchableOpacity onPress={()=>this.savePhoto()}>
-                             <Text>Aceptar</Text>
+                         <TouchableOpacity style={styles.acceptButton} onPress={()=>this.savePhoto()}>
+                             <Text>Accept</Text>
                          </TouchableOpacity>
-                         <TouchableOpacity onPress={()=> this.clear()}>
-                             <Text>Rechazar</Text>
+                         <TouchableOpacity style={styles.dismissButton} onPress={()=> this.clear()}>
+                             <Text>Dismiss</Text>
                          </TouchableOpacity>
                          </View>
 
@@ -111,7 +113,7 @@ class MyCamera extends Component {
                       <TouchableOpacity 
                         style={styles.button} 
                         onPress={()=>this.takePicture()}>
-                          <Text>Sacar foto</Text>
+                          <FontAwesome name="camera" size={24} color="white" />
                       </TouchableOpacity>
                     </React.Fragment>
                     :
@@ -127,13 +129,44 @@ const styles = StyleSheet.create({
         flex:7,
     },
     button:{
+        paddingVertical: 10,
         flex:1,
+        alignSelf: 'center',
+        width: 70,
+        height: 50,
+        borderRadius: '50%',
+        backgroundColor: '#3e92e0',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        marginBottom: 5,
     },
     preview:{
         flex:7
     },
     actionArea:{
         flex: 2
+    },
+    acceptButton: {
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        width: '40%',
+        textAlign: 'center',
+        borderRadius: 4,
+        borderWidth: 1,
+        borderStyle: 'solid',
+        borderColor: 'green',
+        marginTop: 10,
+    },
+    acceptButton: {
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        width: '40%',
+        textAlign: 'center',
+        borderRadius: 4,
+        borderWidth: 1,
+        borderStyle: 'solid',
+        borderColor: 'red',
+        marginTop: 10,
     },
 })
 
