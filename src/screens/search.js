@@ -9,7 +9,7 @@ class Search extends Component {
         super()
         this.state = {
             searchText: '',
-            postsUser: {},
+            postsUser: [],
         }
     }
 
@@ -56,7 +56,7 @@ class Search extends Component {
                       renderItem={({ item }) => <Post post={item} />}/>
                     :
                     
-                    <Text>No hay nada para mostrarte pa </Text>
+                    <Text>No results for this user</Text>
                     }
                 </React.Fragment>
             </React.Fragment>

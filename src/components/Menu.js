@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Text, View, TouchableOpacity, Image, StyleSheet, ActivityIndicator, FlatList, TextInput } from 'react-native';
 
-const Drawer = createDrawerNavigator();
+const Drawer = createBottomTabNavigator();
 
 import Home from '../screens/home'
 import Register from '../screens/register'
