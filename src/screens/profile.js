@@ -1,19 +1,38 @@
 import React, {Component} from 'react';
 import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, FlatList, TextInput} from 'react-native';
-import {auth} from '../firebase/config';
+import {auth, db} from '../firebase/config';
+
+import Post from '../components/Post';
 
 class Profile extends Component{
   constructor(props){
     super(props);
     this.state ={
-      
+      postsUser: [],
     }
   }
 
+  componentDidMount(){
+    console.log(auth.currentUser.email);
+    db.collection('Posts').where('owner', '==', auth.currentUser.email).onSnapshot(
+      docs => {
+          let posteo = [];
+          docs.forEach(doc => {
+              posteo.push({
+                  id: doc.id,
+                  data: doc.data()
+              })
+          })
+
+          this.setState({
+              postsUser: posteo,
+          })
+  }) 
+  }
+
   render(){
-    console.log(auth.currentUser);
     return(
-      <View style={styles.container}>
+        <React.Fragment>
         <Text style={styles.title}>Profile</Text>
 
         <View style={styles.infoContainer}>
@@ -21,13 +40,26 @@ class Profile extends Component{
           <Text style={styles.infoText}>Email: {auth.currentUser.email}</Text>
           <Text style={styles.infoText}>Last sign in: {auth.currentUser.metadata.lastSignInTime}</Text>
         </View>
+
+        { this.state.postsUser.length !== 0
+        ?
+        <FlatList 
+        style={styles.posts}
+        data={this.state.postsUser}
+        keyExtractor={post => post.id}
+        renderItem={({ item }) => <Post post={item} />}/>
+        :
+                    
+        <Text>This user has no posts.</Text>
+        }
         
         <TouchableOpacity style={styles.boton}  onPress={()=>this.props.logout()}>
           <Text style={styles.texto}>Logout</Text>
        
         </TouchableOpacity>
+
         
-      </View>
+        </React.Fragment>
       
     )
   }
@@ -40,7 +72,7 @@ const styles = StyleSheet.create({
   infoContainer: {
     width: '90%',
     margin: 'auto',
-    marginVertical: 30,
+    marginVertical: 10,
     backgroundColor: 'white',
     padding: 15,
     borderRadius: 10,
@@ -63,7 +95,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: '#d11919',
-    marginTop: 10,
     alignSelf: 'center',
   },
   texto: {
@@ -72,6 +103,10 @@ const styles = StyleSheet.create({
   infoText: {
     marginVertical: 5,
   },
+  posts: {
+    marginVertical: 10,
+    padding: 20,
+  }
 })
 
 export default Profile;

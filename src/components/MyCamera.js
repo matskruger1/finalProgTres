@@ -108,7 +108,7 @@ class MyCamera extends Component {
                       <TouchableOpacity 
                         style={styles.button} 
                         onPress={()=>this.takePicture()}>
-                          <text>Sacar foto</text>
+                          <Text>Sacar foto</Text>
                       </TouchableOpacity>
                     </React.Fragment>
                     :

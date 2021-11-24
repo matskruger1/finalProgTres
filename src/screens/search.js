@@ -31,7 +31,6 @@ class Search extends Component {
     }
 
     render() {
-        console.log(this.state.postsUser)
         return (
             <React.Fragment>
                 <Text style={styles.title}>Search Users</Text>

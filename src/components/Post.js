@@ -4,6 +4,8 @@ import { Text, View, TouchableOpacity, StyleSheet, Modal, TextInput, FlatList } 
 import { auth, db } from '../firebase/config'
 import firebase from 'firebase'
 
+import { FontAwesome } from '@expo/vector-icons';
+
 class Post extends Component {
     constructor(props) {
         super(props);
@@ -99,16 +101,15 @@ class Post extends Component {
                     {
                         this.state.liked ?
                             <TouchableOpacity style={styles.boton} onPress={() => this.disLike()}>
-                                <Text>Quitar like</Text>
+                                <FontAwesome name="heart" size={24} color="red" />
                             </TouchableOpacity>
                             :
                             <TouchableOpacity style={styles.boton} onPress={() => this.like()}>
-                                <Text>Me gusta</Text>
+                                <FontAwesome name="heart-o" size={24} color="black" />
                             </TouchableOpacity>
                     }
+                    
                 </View>
-                <Text>Likes: {this.state.likes} </Text>
-
                 {
                     this.state.showModal ?
                         <Modal style={styles.modalContainer}
@@ -131,8 +132,6 @@ class Post extends Component {
                                     <Text>No comments yet</Text>
                             }
 
-
-                            <View style={styles.formContainer}>
                                 <TextInput
                                     style={styles.input}
                                     keyboardType='default'
@@ -149,14 +148,14 @@ class Post extends Component {
                                 <TouchableOpacity style={styles.boton} onPress={() => this.publicarComentario()}>
                                     <Text>Comentar</Text>
                                 </TouchableOpacity>
-                            </View>
 
                         </Modal>
                         :
                         <TouchableOpacity onPress={() => this.showModal()}>
-                            <Text>Ver comentarios</Text>
+                            <Text>Comment <FontAwesome name="comment-o" size={20} color="black" /> </Text>
                         </TouchableOpacity>
                 }
+                <Text>Likes: {this.state.likes} </Text>
 
             </View>
         )
@@ -193,7 +192,7 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     modalContainer: {
-        width:"30%",
+        width:"90%",
         borderRadius: 4,
         padding: 10,
         alignSelf: 'center',
@@ -209,9 +208,9 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end',
     },
     input: {
-        height: 20,
-        paddingVertical: 15,
+        height: 30,
         paddingHorizontal: 10,
+        paddingTop: 5,
         borderWidth: 1,
         borderColor: '#ccc',
         borderRadius: 6,
