@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, StyleSheet, Modal, TextInput, FlatList } from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet, Modal, TextInput, FlatList, Image } from 'react-native';
 
 import { auth, db } from '../firebase/config'
 import firebase from 'firebase'
@@ -91,12 +91,30 @@ class Post extends Component {
 
     }
 
+    borrarPosteo(){
+
+    }
+
     render() {
       
         return (
 
             <View style={styles.postContainer}>
+
+                {auth.currentUser.email==this.props.post.data.owner ?
+                <TouchableOpacity onPress={() => this.borrarPosteo()}>
+                                <Text style={styles.closeButton}>X</Text>
+                </TouchableOpacity>
+                :
+                <TouchableOpacity>
+                </TouchableOpacity>
+                }
                 <Text>{this.props.post.data.owner}: {this.props.post.data.textoPost}</Text>
+                  <Image 
+                  source = {this.props.post.data.photo}
+                  resizeMode= 'contain'
+                  style={styles.image}
+                />
                 <View style={styles.botonContainer}>
                     {
                         this.state.liked ?
@@ -110,6 +128,8 @@ class Post extends Component {
                     }
                     
                 </View>
+
+
                 {
                     this.state.showModal ?
                         <Modal style={styles.modalContainer}
@@ -175,6 +195,7 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderColor: '#3e92e0',
         marginTop: 10,
+        alignSelf:'center'
     },
     botonContainer: {
         display: 'flex',
@@ -223,6 +244,10 @@ const styles = StyleSheet.create({
         width: '80%',
         margin: 'auto',
     },
+    image: {
+            height: 200
+        }
+    
 })
 
 export default Post;

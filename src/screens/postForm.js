@@ -51,6 +51,7 @@ class PostForm extends Component {
             <View style={styles.formContainer}>
                 <Text style={styles.title}>Post</Text>
                 
+
                 <TextInput
                     placeholder='Comment...'
                     style={styles.input}

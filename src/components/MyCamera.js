@@ -40,6 +40,9 @@ class MyCamera extends Component {
 
     clear(){
         //Setear el estado photo a vacio
+        this.setState({
+            photo:""
+        })
 
     }
 
