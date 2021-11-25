@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, FlatList } from 'react-native';
+import { Text, View, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
 import { db } from '../firebase/config';
 
 import Post from '../components/Post'
@@ -9,6 +9,7 @@ class Home extends Component {
         super()
         this.state = {
             posts: [],
+            loading: true,
         }
     }
 
@@ -25,6 +26,7 @@ class Home extends Component {
 
                 this.setState({
                     posts: posteos,
+                    loading: false,
                 })
             }
 
@@ -40,11 +42,17 @@ class Home extends Component {
                      
                <Text style={styles.title}> Home </Text>
               
-                   <FlatList 
+              {
+                  this.state.loading ?
+                  <ActivityIndicator style={styles.loader} size='large' color='#3e92e0'/>
+                  :
+                  <FlatList 
                         data={this.state.posts}
                         keyExtractor={post => post.id}
                         renderItem={({ item }) => <Post post={item} />}
                    />
+              }
+                   
                    </React.Fragment>
                 
             
@@ -63,6 +71,9 @@ const styles = StyleSheet.create({
     background: {
         padding: 20,
     },
+    loader: {
+        marginTop: 30,
+    }
 })
 
 export default Home;
