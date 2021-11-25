@@ -113,7 +113,7 @@ class MyCamera extends Component {
                       <TouchableOpacity 
                         style={styles.button} 
                         onPress={()=>this.takePicture()}>
-                          <FontAwesome name="camera" size={24} color="white" />
+                          <FontAwesome style={styles.cameraIcon} name="camera" size={24} color="white" />
                       </TouchableOpacity>
                     </React.Fragment>
                     :
@@ -129,12 +129,11 @@ const styles = StyleSheet.create({
         flex:7,
     },
     button:{
-        paddingVertical: 10,
         flex:1,
         alignSelf: 'center',
-        width: 70,
+        width: 50,
         height: 50,
-        borderRadius: '50%',
+        borderRadius: 20,
         backgroundColor: '#3e92e0',
         justifyContent: 'space-around',
         alignItems: 'center',

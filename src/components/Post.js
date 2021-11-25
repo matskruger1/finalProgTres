@@ -104,14 +104,6 @@ class Post extends Component {
 
             <View style={styles.postContainer}>
 
-                {auth.currentUser.email==this.props.post.data.owner ?
-                <TouchableOpacity onPress={() => this.borrarPosteo()}>
-                                <Text style={styles.closeButton}>X</Text>
-                </TouchableOpacity>
-                :
-                <TouchableOpacity>
-                </TouchableOpacity>
-                }
                 <View style={styles.postData}>
                     <Text style={styles.userName}>{this.props.post.data.owner}</Text>
                     <Text style={styles.infoText}>Created at {this.props.post.data.createdAt}</Text>
@@ -190,6 +182,15 @@ class Post extends Component {
                         null
                 }
                 <Text>Likes: {this.state.likes} </Text>
+                
+                {
+                    auth.currentUser.email==this.props.post.data.owner ?
+                    <TouchableOpacity onPress={() => this.borrarPosteo()}>
+                            <Text style={styles.closeButton}><FontAwesome name="trash" size={15} color="white" /> Delete </Text>
+                    </TouchableOpacity>
+                    :
+                    null
+                }
 
             </View>
         )
@@ -248,7 +249,7 @@ const styles = StyleSheet.create({
         padding: 5,
         borderRadius: 5,
         margin: 5,
-        alignSelf: 'flex-end',
+        alignSelf: 'center',
     },
     input: {
         height: 30,
