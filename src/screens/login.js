@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, Image, StyleSheet, TextInput } from 'react-native';
-import { withSafeAreaInsets } from 'react-native-safe-area-context';
+import { Text, View, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
 
 class Login extends Component {
     constructor(props) {

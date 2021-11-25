@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Text, View, TouchableOpacity, Image, StyleSheet, ActivityIndicator, FlatList, TextInput } from 'react-native';
+import { Text, View, TouchableOpacity, Image, StyleSheet, TextInput } from 'react-native';
 import MyCamera from "../components/MyCamera";
 import {auth, db} from '../firebase/config'
 
@@ -23,7 +23,6 @@ class PostForm extends Component {
             photo:this.state.url,
         })
             .then(() => {
-                console.log('Posteado OK');
                 this.setState({
                     textoPost: '',
                 })

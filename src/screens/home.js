@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
+import { Text, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
 import { db } from '../firebase/config';
 
 import Post from '../components/Post'
